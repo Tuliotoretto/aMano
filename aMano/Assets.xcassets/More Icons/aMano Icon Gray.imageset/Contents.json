@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "a Mano_ICON_GRAY.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
