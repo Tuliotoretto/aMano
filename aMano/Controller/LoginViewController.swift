@@ -18,7 +18,11 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        showAuthUI()
+        if NetworkMonitor.shared.isConnected {
+            showAuthUI()
+        } else {
+            NetworkMonitor.shared.showNetworkAlert(self)
+        }
     }
     
     private func setup() {
@@ -47,8 +51,11 @@ extension LoginViewController: FUIAuthDelegate {
             return
         }
         
-        DatabaseManager.shared.getUser(id: AuthManager.shared.userId) {[weak self] user, err in
-            self!.performSegue(withIdentifier: K.segues.toEditProfileSegue, sender: self)
+        if let editProfileVC = storyboard?.instantiateViewController(withIdentifier: "EditProfileViewController") {
+            self.navigationController?.pushViewController(editProfileVC, animated: true)
         }
+        //self.navigationController?.performSegue(withIdentifier: K.segues.toEditProfileSegue, sender: self)
+        
+        //self.performSegue(withIdentifier: K.segues.toEditProfileSegue, sender: self)
     }
 }

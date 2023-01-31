@@ -22,18 +22,26 @@ struct K {
         static let toEditProfileSegue = "toEditProfileInfo"
         static let toMenuSegue = "toMenu"
         static let toCreateUserSegue = "toCreateUser"
+        static let toGroupDetailsSegue = "toGroupDetails"
     }
     
     // MARK: - cellIds
     struct cellIdentifiers {
         static let headerUserView = "UserHeaderView"
-        static let friendCellIdentifier = "FriendCell"
         static let groupCellIdentifier = "GroupCell"
+        static let textFieldCell = "TextFieldCell"
+        static let participantsCell = "ParticipantsCell"
         static let activityCellIdentifier = "ActivityCell"
+        static let ParticipantDetailsCell = "ParticipantDetailsCell"
     }
     
     // MARK: - Database
     struct db {
-        static let userCollection = "Users"
+        static let groupCollection = "groups"
+    }
+    
+    // MARK: - Colors
+    struct color {
+        
     }
 }

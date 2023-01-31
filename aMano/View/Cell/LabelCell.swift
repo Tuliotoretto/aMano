@@ -1,17 +1,15 @@
 //
-//  FriendCell.swift
+//  ParticipantsCell.swift
 //  aMano
 //
-//  Created by Julian Garcia  on 01/12/22.
+//  Created by Julian Garcia  on 18/01/23.
 //
 
 import UIKit
 
-class FriendCell: UITableViewCell {
+class LabelCell: UITableViewCell {
 
-    @IBOutlet weak var friendImage: UIImageView!
-    @IBOutlet weak var friendNameLabel: UILabel!
-    @IBOutlet weak var friendDebt: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,5 +21,7 @@ class FriendCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
     
 }

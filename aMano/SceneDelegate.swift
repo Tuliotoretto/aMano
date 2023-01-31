@@ -19,17 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // if the user is active, go to main menu. if not, go to login.
         if AuthManager.shared.isCurrentUserActive {
-            DatabaseManager.shared.setUserListener { done in
-                if done {
-                    window.rootViewController = storyboard.instantiateViewController(
-                            withIdentifier: K.storyboardID.MenuViewController
-                        )
-                } else {
-                    window.rootViewController = storyboard.instantiateViewController(
-                            withIdentifier: K.storyboardID.loginViewController
-                        )
-                }
-            }
+            window.rootViewController = storyboard.instantiateViewController(
+                    withIdentifier: K.storyboardID.MenuViewController
+                )
         } else {
             window.rootViewController = storyboard.instantiateViewController(
                     withIdentifier: K.storyboardID.loginViewController

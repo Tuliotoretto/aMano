@@ -7,17 +7,23 @@
 
 import UIKit
 import FirebaseCore
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // Network Monitor Config
+        NetworkMonitor.shared.startMonitoring()
+        
         // Firebase config
         FirebaseApp.configure()
         AuthManager.shared.configure()
-        DatabaseManager.shared.configure()
         
+        // Keyboard config
+        IQKeyboardManager.shared.enable = true
+                
         return true
     }
 

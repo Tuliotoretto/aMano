@@ -12,7 +12,14 @@ target 'aMano' do
   pod 'FirebaseAuth'
   pod 'FirebaseFirestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'FirebaseStorage'
   pod 'FirebaseUI/Phone'
+  
+  # KeyboardManager
+  pod 'IQKeyboardManagerSwift'
+  
+  # Form builder
+  pod 'Eureka'
   
 end
 

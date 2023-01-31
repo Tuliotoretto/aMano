@@ -9,73 +9,144 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+
 class DatabaseManager {
     static let shared = DatabaseManager()
     
     private let db = Firestore.firestore()
     
-    public var user: UserModel?
+    var groups = [Group]()
     
-    public func configure() {
-        guard AuthManager.shared.isCurrentUserActive else {return}
+    // MARK: - Manage Groups DB
+    // TODO CREATE GROUP
+    func createGroup(_ group: Group, completion: ((DocumentReference?) -> Void)? = nil) {
+        var docRef: DocumentReference? = nil
         
-        getUser(id: AuthManager.shared.userId)
+        docRef = try? db.collection(K.db.groupCollection).addDocument(from: group) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(docRef!.documentID)")
+            }
+            completion?(docRef)
+        }
     }
     
-    // MARK: - User Methods
-    public func createUser(user: UserModel, completion: ((Bool) -> Void)? = nil) {
-        do {
-            try db.collection(K.db.userCollection).document(user.id).setData(from: user.data) { error in
-                if error == nil {
-                    completion?(true)
-                } else {
-                    completion?(false)
+    // TODO GET ALL GROUPS OF USER
+    func getAllGroups(of userId: String, completion: (([Group]?) -> Void)? = nil) {
+        db.collection(K.db.groupCollection)
+            .whereField("ownerID", isEqualTo: AuthManager.shared.userId)
+            .getDocuments { querySnapshot, err in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                var groups = [Group]()
+                for document in querySnapshot!.documents {
+                    if let group = try? document.data(as: Group.self) {
+                        groups.append(group)
+                    }
+                }
+                groups.sort { a, b in
+                    a.lastUpdated.seconds > b.lastUpdated.seconds
+                }
+                self.groups = groups
+                completion?(self.groups)
+            }
+            completion?(nil)
+        }
+    }
+    
+    // TODO UPDATE GROUP
+    // TODO DELETE GROUP
+    
+    // TODO ADD GROUP EXPENCE
+    func addExpence(groupId: String, participantId: String, amount: Double, completion: ((Error?) -> Void)? = nil) {
+        
+        // update participants locally
+        guard var selectedGroup = (groups.first { group in
+            group.id == groupId
+        }) else {
+            print("Could not find selected group!")
+            return
+        }
+        
+        guard let index = (selectedGroup.participants.firstIndex { participant in
+            participant.uuid == participantId
+        }) else {
+            print("Could not find user id in the selected group!")
+            return
+        }
+        
+        selectedGroup.debt += amount
+        selectedGroup.participants[index].debt += amount
+        
+        selectedGroup.lastUpdated = Timestamp(date: Date())
+        
+        // update database
+        let docRef = db.collection(K.db.groupCollection).document(groupId)
+        try? docRef.setData(from: selectedGroup, merge: false) { err in
+            if let _ = err {
+                print("Error actualizado la base de datos")
+                completion?(err)
+            }
+            print("Se actualizó la base de datos")
+            completion?(err)
+        }
+    }
+    
+    // TODO SETTLE UP
+    // PAY DEBT
+    
+    // MARK: - Local group methods
+    
+    var totalDebt: Double {
+        var total: Double = 0.0
+        for group in groups {
+            total += group.debt
+        }
+        return total
+    }
+    
+    func getGroupsNames() -> [String] {
+        var names = [String]()
+        for group in groups {
+            names.append(group.name)
+        }
+        return names
+    }
+    
+    func getParticipantsNames(for groupID: String) -> [String] {
+        var names = [String]()
+        for group in groups {
+            if group.id == groupID {
+                for participant in group.participants {
+                    names.append(participant.name)
                 }
             }
-        } catch {
-            completion?(false)
         }
+        return names
     }
     
-    public func getUser(id: String, completion: ((UserModel?, Error?) -> Void)? = nil) {
-        db.collection(K.db.userCollection).document(id).getDocument(as: UserData.self) {[weak self] result in
-            switch (result) {
-            case .success(let data):
-                self!.user = UserModel(id: id, data: data)
-                completion?(self!.user, nil)
-            case .failure(let error):
-                completion?(nil, error)
-            }
-        }
-    }
     
-    public func updateUser(user: UserModel, completion: ((Bool) -> Void)? = nil) {
-        do {
-            try db.collection(K.db.userCollection).document(user.id).setData(from: user.data, merge: true) { err in
-                if err == nil {
-                    completion?(true)
-                } else {
-                    completion?(false)
+    func getParticipantId(for groupID: String, name: String) -> String? {
+        for group in groups {
+            if group.id == groupID {
+                for participant in group.participants {
+                    if participant.name == name {
+                        return participant.uuid
+                    }
                 }
             }
-        } catch {
-            // TODO SHOW ERROR
-            print(error)
-            completion?(false)
         }
+        return nil
     }
     
-    public func setUserListener(completion: ((Bool) -> Void)? = nil) {
-        guard AuthManager.shared.isCurrentUserActive else {return}
-        
-        db.collection(K.db.userCollection).document(AuthManager.shared.userId)
-            .addSnapshotListener { documentSnapshot, error in
-                guard let document = documentSnapshot else {return}
-                
-                guard let data = try? document.data(as: UserData.self) else {return}
-                
-                self.user = UserModel(id: AuthManager.shared.userId, data: data)
-                print("Usuario actualizado")
+    func getgroupIdBy(name: String) -> String? {
+        for group in groups {
+            if group.name == name {
+                return group.id!
             }
+        }
+        return nil
     }
 }
