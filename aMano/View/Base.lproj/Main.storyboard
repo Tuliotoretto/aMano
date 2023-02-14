@@ -301,7 +301,7 @@
                             <outlet property="delegate" destination="WDt-Tx-Xk4" id="FaX-yG-5IE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Groups" id="9ck-Ao-1M7">
+                    <navigationItem key="navigationItem" title="Grupos" id="9ck-Ao-1M7">
                         <barButtonItem key="rightBarButtonItem" title="New Group" id="Qci-qU-Pid">
                             <color key="tintColor" name="Icon"/>
                             <connections>
@@ -317,7 +317,7 @@
             </objects>
             <point key="canvasLocation" x="2676.811594202899" y="-476.08695652173918"/>
         </scene>
-        <!--New Group-->
+        <!--nuevo Grupo-->
         <scene sceneID="fAY-DS-xbj">
             <objects>
                 <viewController id="bc0-Vv-lML" customClass="NewGroupViewController" customModule="aMano" customModuleProvider="target" sceneMemberID="viewController">
@@ -416,7 +416,7 @@
                             <constraint firstItem="Tmm-42-CmY" firstAttribute="trailing" secondItem="h4R-SI-AJq" secondAttribute="trailing" id="w3F-ak-Qw4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="New Group" id="Otr-N7-fGw">
+                    <navigationItem key="navigationItem" title="nuevo Grupo" id="Otr-N7-fGw">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="UJB-Gs-E0N">
                             <color key="tintColor" name="Icon"/>
                             <connections>
@@ -432,7 +432,7 @@
             </objects>
             <point key="canvasLocation" x="4629" y="-476"/>
         </scene>
-        <!--Add new expense-->
+        <!--Agregar-->
         <scene sceneID="Lk3-3I-V9n">
             <objects>
                 <viewController id="R4D-3R-UZb" customClass="AddViewController" customModule="aMano" customModuleProvider="target" sceneMemberID="viewController">
@@ -442,7 +442,7 @@
                         <viewLayoutGuide key="safeArea" id="YBD-mx-afZ"/>
                         <color key="backgroundColor" name="Background"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add new expense" id="QuA-yw-Hgp"/>
+                    <navigationItem key="navigationItem" title="Agregar" id="QuA-yw-Hgp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Akv-wU-cZ4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -451,7 +451,6 @@
         <!--Group Details View Controller-->
         <scene sceneID="tfK-PW-0K1">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ATv-ta-jJb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="teo-Ku-Dks" customClass="GroupDetailsViewController" customModule="aMano" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FKD-jz-GyY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -515,14 +514,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="vKz-n6-v3w"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ATv-ta-jJb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3742" y="275"/>
         </scene>
-        <!--Groups-->
+        <!--Grupos-->
         <scene sceneID="PhA-QC-bap">
             <objects>
                 <navigationController id="Ncy-3l-q9D" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Groups" image="person.3.fill" catalog="system" id="aee-IA-F4M"/>
+                    <tabBarItem key="tabBarItem" title="Grupos" image="person.3.fill" catalog="system" id="aee-IA-F4M"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NAr-q6-Ikb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -569,28 +569,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" tag="1" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dbt-6r-ei7">
-                                        <rect key="frame" x="0.0" y="88.333333969116211" width="414" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dbt-6r-ei7" id="s7C-Ur-h6J">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Print User Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Aj-cL-LcN">
-                                                    <rect key="frame" x="20" y="11.000000000000002" width="374" height="21.666666666666671"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="3Aj-cL-LcN" firstAttribute="centerY" secondItem="s7C-Ur-h6J" secondAttribute="centerY" id="1fD-vP-wE6"/>
-                                                <constraint firstItem="3Aj-cL-LcN" firstAttribute="leading" secondItem="s7C-Ur-h6J" secondAttribute="leadingMargin" id="BpZ-vf-GGg"/>
-                                                <constraint firstItem="3Aj-cL-LcN" firstAttribute="top" secondItem="s7C-Ur-h6J" secondAttribute="topMargin" id="C0s-0Y-J2K"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="3Aj-cL-LcN" secondAttribute="trailing" id="K7u-5Z-xeH"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -599,17 +577,17 @@
                             <outlet property="delegate" destination="OkC-BC-EPl" id="fZP-ah-s54"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="FbJ-aa-rVg"/>
+                    <navigationItem key="navigationItem" title="Ajustes" id="FbJ-aa-rVg"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GR4-7f-VT5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2684" y="1004"/>
         </scene>
-        <!--Profile-->
+        <!--Ajustes-->
         <scene sceneID="XFF-4e-CGw">
             <objects>
                 <navigationController id="jNc-Sh-DgC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle.fill" catalog="system" id="s26-HD-mgu"/>
+                    <tabBarItem key="tabBarItem" title="Ajustes" image="person.circle.fill" catalog="system" id="s26-HD-mgu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Gj-cT-PAT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -658,11 +636,11 @@
             </objects>
             <point key="canvasLocation" x="3722" y="-476"/>
         </scene>
-        <!--Add-->
+        <!--Agregar-->
         <scene sceneID="B53-na-X6X">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nDD-FI-B8s" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Add" id="3oX-f0-wlx">
+                    <tabBarItem key="tabBarItem" title="Agregar" id="3oX-f0-wlx">
                         <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
